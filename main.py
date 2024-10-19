@@ -4,9 +4,9 @@ import pickle
 import numpy as np
 import pandas as pd
 
-# Load the trained model
-with open('credit_default_model.pkl', 'rb') as file:
-    model = pickle.load(file)
+with open('credit_default_model.pkl', 'rb') as model_file:
+    model = pickle.load(model_file)
+
 
 # Streamlit app interface
 st.title('Credit Card Default Prediction')
