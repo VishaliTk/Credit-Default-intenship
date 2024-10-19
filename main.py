@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Load the pre-trained model using pickle
-with open('credit-default-model.pkl', 'rb') as model_file:
+with open('credit_default_model.pkl', 'rb') as model_file:
     model = pickle.load(file)
 
 # Create a Streamlit web app
