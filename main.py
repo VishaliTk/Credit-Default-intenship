@@ -35,3 +35,23 @@ PAY_AMT_JUL = st.number_input('Enter Payment Amount in July:', step=100.0)
 PAY_AMT_JUN = st.number_input('Enter Payment Amount in June:', step=100.0)
 PAY_AMT_MAY = st.number_input('Enter Payment Amount in May:', step=100.0)
 PAY_AMT_APR = st.number_input('Enter Payment Amount in April:', step=100.0)
+
+# Ensure no input is left undefined
+if st.button('Predict Default'):
+    # Create input array for prediction
+    input_data = np.array([[LIMIT_BAL, SEX, EDUCATION, MARRIAGE, AGE, 
+                            PAY_SEPT, PAY_AUG, PAY_JUL, PAY_JUN, PAY_MAY, PAY_APR,
+                            BILL_AMT_SEPT, BILL_AMT_AUG, BILL_AMT_JUL, BILL_AMT_JUN, BILL_AMT_MAY, BILL_AMT_APR,
+                            PAY_AMT_SEPT, PAY_AMT_AUG, PAY_AMT_JUL, PAY_AMT_JUN, PAY_AMT_MAY, PAY_AMT_APR]])
+
+    # Scale the input data using the same scaler used in training
+    input_data_scaled = scaler.transform(input_data)
+
+    # Make prediction
+    prediction = model.predict(input_data_scaled)
+    
+    # Display the prediction result
+    if prediction[0] == 1:
+        st.write('The customer is likely to default on the credit card payment.')
+    else:
+        st.write('The customer is not likely to default on the credit card payment.')
